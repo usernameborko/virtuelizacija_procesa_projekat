@@ -19,7 +19,7 @@ namespace Client
                 proxy.StartSession(vehicleId);
 
                 Console.WriteLine("Sending sample data...");
-                ChargingData testData = new ChargingData
+                ChargingData validData = new ChargingData
                 {
                     VehicleId = vehicleId,
                     RowIndex = 1,
@@ -44,12 +44,25 @@ namespace Client
                     FrequencyMax = 50.2
                 };
 
-                proxy.PushSample(testData);
+                proxy.PushSample(validData);
+                Console.WriteLine("valid data sent successfuly");
 
-                Console.WriteLine("Ending session...");
-                proxy.EndSession(vehicleId);
+                Console.WriteLine("testing invalid data");
+                ChargingData invalidData = new ChargingData
+                {
+                    VehicleId = vehicleId,
+                    RowIndex = 2,
+                    TimeStamp = DateTime.Now,
+                    VoltageRMSMin = -220.0,
+                    VoltageRMSAvg = 230.0,
+                    VoltageRMSMax = 240.0,
+                    FrequencyMin = 49.8,
+                    FrequencyAvg = 50.0,
+                    FrequencyMax = 50.2
+                };
 
-                Console.WriteLine("Test completed successfully!");
+                proxy.PushSample(invalidData);
+                Console.WriteLine("invalid data sent");
             }
             catch(FaultException<ChargingException> ex)
             {
@@ -58,6 +71,17 @@ namespace Client
             catch(Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            try
+            {
+                Console.WriteLine("Ending session...");
+                proxy.EndSession("golf_4_001");
+                Console.WriteLine("Test completed!");
+            } 
+            catch(FaultException<ChargingException> ex)
+            {
+                Console.WriteLine($"Service error: {ex.Detail.Message}");
             }
 
             Console.WriteLine("Press any key to exit...");
