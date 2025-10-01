@@ -8,17 +8,36 @@ namespace Service
     public class ChargingService : IChargingService
     {
         private static Dictionary<string, bool> activeSessions = new Dictionary<string, bool>();
+        private static Dictionary<string, FileManager> sessionFiles = new Dictionary<string, FileManager>();
 
-        public bool EndSession(string vehicleId)
+        public bool StartSession(string vehicleId)
         {
-            if (!activeSessions.ContainsKey(vehicleId))
+            if (string.IsNullOrEmpty(vehicleId))
             {
-                throw new FaultException<ChargingException>(new ChargingException("No active session for this vehicle"));
+                throw new FaultException<ChargingException>(new ChargingException("Vehicle ID cannot be empty!"));
             }
 
-            activeSessions.Remove(vehicleId);
-            Console.WriteLine($"Session ended for vehicle: {vehicleId}");
-            return true;
+            if (activeSessions.ContainsKey(vehicleId))
+            {
+                throw new FaultException<ChargingException>(new ChargingException("Session already active for this vehicle"));
+            }
+
+            try
+            {
+                string sessionFilePath = $"session_{vehicleId}.txt";
+                FileManager fileManager = new FileManager(sessionFilePath);
+
+                activeSessions[vehicleId] = true;
+                sessionFiles[vehicleId] = fileManager;
+
+                Console.WriteLine($"Session started for vehicle: {vehicleId}");
+                Console.WriteLine($"Created file resource: {sessionFilePath}");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException<ChargingException>(new ChargingException($"Failed to start session: {ex.Message}"));
+            }
         }
 
         public bool PushSample(ChargingData data)
@@ -58,25 +77,39 @@ namespace Service
                 throw new FaultException<ChargingException>(new ChargingException("Min frequency must be <= Avg <= Max."));
             }
 
-            Console.WriteLine($"Recieved sample for vehicle {data.VehicleId}, Row: {data.RowIndex}");
+            if(data.RowIndex % 5 == 0)
+            {
+                Console.WriteLine("Simulating disposing resources");
+                if (sessionFiles.ContainsKey(data.VehicleId))
+                {
+                    sessionFiles[data.VehicleId].Dispose();
+                    sessionFiles.Remove(data.VehicleId);
+                }
+                throw new FaultException<ChargingException>(new ChargingException("Resources disposed."));
+            }
+
+            Console.WriteLine($"Received valid sample for vehicle {data.VehicleId}, Row: {data.RowIndex}");
             return true;
         }
 
-        public bool StartSession(string vehicleId)
+        public bool EndSession(string vehicleId)
         {
-            if (string.IsNullOrEmpty(vehicleId))
+            if (!activeSessions.ContainsKey(vehicleId))
             {
-                throw new FaultException<ChargingException>(new ChargingException("Vehicle ID cannot be empty!"));
+                throw new FaultException<ChargingException>(new ChargingException("No active session for this vehicle"));
             }
 
-            if (activeSessions.ContainsKey(vehicleId))
+            if (sessionFiles.ContainsKey(vehicleId))
             {
-                throw new FaultException<ChargingException>(new ChargingException("Session already active for this vehicle"));
+                sessionFiles[vehicleId].Dispose();
+                sessionFiles.Remove(vehicleId);
+                Console.WriteLine($"Resources properly disposed for vehicle: {vehicleId}");
             }
 
-            activeSessions[vehicleId] = true;
-            Console.WriteLine($"Session started for vehicle: {vehicleId}");
+            activeSessions.Remove(vehicleId);
+            Console.WriteLine($"Session ended for vehicle: {vehicleId}");
             return true;
         }
+
     }
 }
