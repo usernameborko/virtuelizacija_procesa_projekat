@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0D626ECE-AC2B-4579-BEC5-01467C176F42}|Service\\Service.csproj|c:\\users\\rbork\\desktop\\virtuelizacija\\punjaczaelektricnavozila\\service\\charginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D626ECE-AC2B-4579-BEC5-01467C176F42}|Service\\Service.csproj|solutionrelative:service\\charginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8896E5F1-9636-4BFD-B6FA-ED91E52DD8C1}|Common\\Common.csproj|c:\\users\\rbork\\desktop\\virtuelizacija\\punjaczaelektricnavozila\\common\\chargingexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8896E5F1-9636-4BFD-B6FA-ED91E52DD8C1}|Common\\Common.csproj|solutionrelative:common\\chargingexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8896E5F1-9636-4BFD-B6FA-ED91E52DD8C1}|Common\\Common.csproj|c:\\users\\rbork\\desktop\\virtuelizacija\\punjaczaelektricnavozila\\common\\ichargingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8896E5F1-9636-4BFD-B6FA-ED91E52DD8C1}|Common\\Common.csproj|C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\common\\ichargingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8896E5F1-9636-4BFD-B6FA-ED91E52DD8C1}|Common\\Common.csproj|solutionrelative:common\\ichargingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -35,6 +39,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "CharginService.cs",
+              "DocumentMoniker": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Service\\CharginService.cs",
+              "RelativeDocumentMoniker": "Service\\CharginService.cs",
+              "ToolTip": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Service\\CharginService.cs",
+              "RelativeToolTip": "Service\\CharginService.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABsAAABpAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T20:31:00.349Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "ChargingException.cs",
               "DocumentMoniker": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Common\\ChargingException.cs",
               "RelativeDocumentMoniker": "Common\\ChargingException.cs",
@@ -47,7 +64,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "IChargingService.cs",
               "DocumentMoniker": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Common\\IChargingService.cs",
               "RelativeDocumentMoniker": "Common\\IChargingService.cs",
@@ -55,8 +72,7 @@
               "RelativeToolTip": "Common\\IChargingService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-01T20:19:09.465Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-01T20:19:09.465Z"
             }
           ]
         }
