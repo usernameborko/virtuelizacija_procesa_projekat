@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1AAE1F27-001F-43D9-A493-31840708C222}|Client\\Client.csproj|c:\\users\\rbork\\desktop\\virtuelizacija\\punjaczaelektricnavozila\\client\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{1AAE1F27-001F-43D9-A493-31840708C222}|Client\\Client.csproj|solutionrelative:client\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0D626ECE-AC2B-4579-BEC5-01467C176F42}|Service\\Service.csproj|c:\\users\\rbork\\desktop\\virtuelizacija\\punjaczaelektricnavozila\\service\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{0D626ECE-AC2B-4579-BEC5-01467C176F42}|Service\\Service.csproj|solutionrelative:service\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1AAE1F27-001F-43D9-A493-31840708C222}|Client\\Client.csproj|c:\\users\\rbork\\desktop\\virtuelizacija\\punjaczaelektricnavozila\\client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1AAE1F27-001F-43D9-A493-31840708C222}|Client\\Client.csproj|solutionrelative:client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8896E5F1-9636-4BFD-B6FA-ED91E52DD8C1}|Common\\Common.csproj|c:\\users\\rbork\\desktop\\virtuelizacija\\punjaczaelektricnavozila\\common\\ichargingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8896E5F1-9636-4BFD-B6FA-ED91E52DD8C1}|Common\\Common.csproj|solutionrelative:common\\ichargingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8896E5F1-9636-4BFD-B6FA-ED91E52DD8C1}|Common\\Common.csproj|c:\\users\\rbork\\desktop\\virtuelizacija\\punjaczaelektricnavozila\\common\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8896E5F1-9636-4BFD-B6FA-ED91E52DD8C1}|Common\\Common.csproj|solutionrelative:common\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,54 +30,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "App.config",
-              "DocumentMoniker": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Service\\App.config",
-              "RelativeDocumentMoniker": "Service\\App.config",
-              "ToolTip": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Service\\App.config",
-              "RelativeToolTip": "Service\\App.config",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACAAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-10-01T22:10:48.994Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "App.config",
-              "DocumentMoniker": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Client\\App.config",
-              "RelativeDocumentMoniker": "Client\\App.config",
-              "ToolTip": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Client\\App.config",
-              "RelativeToolTip": "Client\\App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-10-01T22:10:39.16Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Client\\Program.cs",
-              "RelativeDocumentMoniker": "Client\\Program.cs",
-              "ToolTip": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Client\\Program.cs",
-              "RelativeToolTip": "Client\\Program.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAA0wAYAAAAYAAAAAAAAAA==",
+              "Title": "FileManager.cs",
+              "DocumentMoniker": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Common\\FileManager.cs",
+              "RelativeDocumentMoniker": "Common\\FileManager.cs",
+              "ToolTip": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Common\\FileManager.cs",
+              "RelativeToolTip": "Common\\FileManager.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAcwCUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-01T22:03:57.055Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IChargingService.cs",
-              "DocumentMoniker": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Common\\IChargingService.cs",
-              "RelativeDocumentMoniker": "Common\\IChargingService.cs",
-              "ToolTip": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Common\\IChargingService.cs",
-              "RelativeToolTip": "Common\\IChargingService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-01T22:02:35.472Z",
+              "WhenOpened": "2025-10-01T22:17:23.155Z",
               "EditorCaption": ""
             }
           ]
