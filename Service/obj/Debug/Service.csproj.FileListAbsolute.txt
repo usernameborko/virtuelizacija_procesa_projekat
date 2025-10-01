@@ -1,0 +1,11 @@
+C:\Users\rbork\Desktop\virtuelizacija\PunjacZaElektricnaVozila\Service\bin\Debug\Service.exe.config
+C:\Users\rbork\Desktop\virtuelizacija\PunjacZaElektricnaVozila\Service\bin\Debug\Service.exe
+C:\Users\rbork\Desktop\virtuelizacija\PunjacZaElektricnaVozila\Service\bin\Debug\Service.pdb
+C:\Users\rbork\Desktop\virtuelizacija\PunjacZaElektricnaVozila\Service\bin\Debug\Common.dll
+C:\Users\rbork\Desktop\virtuelizacija\PunjacZaElektricnaVozila\Service\bin\Debug\Common.pdb
+C:\Users\rbork\Desktop\virtuelizacija\PunjacZaElektricnaVozila\Service\obj\Debug\Service.csproj.AssemblyReference.cache
+C:\Users\rbork\Desktop\virtuelizacija\PunjacZaElektricnaVozila\Service\obj\Debug\Service.csproj.CoreCompileInputs.cache
+C:\Users\rbork\Desktop\virtuelizacija\PunjacZaElektricnaVozila\Service\obj\Debug\Service.csproj.Up2Date
+C:\Users\rbork\Desktop\virtuelizacija\PunjacZaElektricnaVozila\Service\obj\Debug\Service.exe
+C:\Users\rbork\Desktop\virtuelizacija\PunjacZaElektricnaVozila\Service\obj\Debug\Service.pdb
+C:\Users\rbork\Desktop\virtuelizacija\PunjacZaElektricnaVozila\Service\obj\Debug\Service.exe.config

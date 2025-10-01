@@ -1,10 +1,5 @@
-﻿using Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service
 {
@@ -12,7 +7,7 @@ namespace Service
     {
         static void Main(string[] args)
         {
-            ServiceHost host = new ServiceHost(typeof(IChargingService));
+            ServiceHost host = new ServiceHost(typeof(ChargingService));
             host.Open();
 
             Console.WriteLine("Charging service is running...");

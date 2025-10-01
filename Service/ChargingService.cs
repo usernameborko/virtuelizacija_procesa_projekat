@@ -5,7 +5,7 @@ using System.ServiceModel;
 
 namespace Service
 {
-    public class CharginService : IChargingService
+    public class ChargingService : IChargingService
     {
         private static Dictionary<string, bool> activeSessions = new Dictionary<string, bool>();
 
