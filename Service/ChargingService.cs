@@ -33,6 +33,31 @@ namespace Service
                 throw new FaultException<ChargingException>(new ChargingException("No active session for this vehicle"));
             }
 
+            if(data.TimeStamp == default(DateTime) || data.TimeStamp > DateTime.Now.AddMinutes(5))
+            {
+                throw new FaultException<ChargingException>(new ChargingException("Date must be a valid date not in future."));
+            }
+
+            if(data.VoltageRMSMin <= 0 || data.VoltageRMSAvg <= 0 || data.VoltageRMSMax <= 0)
+            {
+                throw new FaultException<ChargingException>(new ChargingException("Voltage values must be greater than 0."));
+            }
+
+            if(data.FrequencyMin <= 0 || data.FrequencyAvg <= 0 || data.FrequencyMax <= 0)
+            {
+                throw new FaultException<ChargingException>(new ChargingException("Frequency values must be greater than 0."));
+            }
+
+            if(data.VoltageRMSMin > data.VoltageRMSAvg || data.VoltageRMSAvg > data.VoltageRMSMax)
+            {
+                throw new FaultException<ChargingException>(new ChargingException("Min voltage must be <= Avg <= Max."));
+            }
+
+            if(data.FrequencyMin > data.FrequencyAvg || data.FrequencyAvg > data.FrequencyMax)
+            {
+                throw new FaultException<ChargingException>(new ChargingException("Min frequency must be <= Avg <= Max."));
+            }
+
             Console.WriteLine($"Recieved sample for vehicle {data.VehicleId}, Row: {data.RowIndex}");
             return true;
         }
