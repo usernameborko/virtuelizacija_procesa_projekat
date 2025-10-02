@@ -16,6 +16,42 @@ namespace Service
 
         private static Dictionary<string, int> sessionCounters = new Dictionary<string, int>();
 
+        public delegate void ChargigngEventHandler(object sender, ChargingEventArgs e);
+
+        public static event ChargigngEventHandler OnTransferStarted;
+        public static event ChargigngEventHandler OnSampleReceived;
+        public static event ChargigngEventHandler OnTransferCompleted;
+        public static event ChargigngEventHandler OnWarningRaised;
+
+        private void RaiseTransferStarted(string vehicleId, string message)
+        {
+            if(OnTransferStarted != null)
+            {
+                OnTransferStarted(this, new ChargingEventArgs(vehicleId, message));
+            }
+        }
+        private void RaiseSampleReceived(string vehicleId, string message, int rowIndex)
+        {
+            if(OnSampleReceived != null)
+            {
+                OnSampleReceived(this, new ChargingEventArgs(vehicleId, message, rowIndex));
+            }
+        }
+        private void RaiseTransferCompleted(string vehicleId, string message)
+        {
+            if(OnTransferCompleted != null)
+            {
+                OnTransferCompleted(this, new ChargingEventArgs(vehicleId, message));
+            }
+        }
+        private void RaiseWaningRaised(string vehicleId, string message)
+        {
+            if(OnWarningRaised != null)
+            {
+                OnWarningRaised(this, new ChargingEventArgs(vehicleId, message));
+            }
+        }
+
         public bool StartSession(string vehicleId)
         {
             if (string.IsNullOrEmpty(vehicleId))

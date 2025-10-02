@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChargingData.cs" />
+    <Compile Include="ChargingEventArgs.cs" />
     <Compile Include="ChargingException.cs" />
     <Compile Include="FileManager.cs" />
     <Compile Include="IChargingService.cs" />
