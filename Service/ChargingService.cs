@@ -1,6 +1,7 @@
 ﻿using Common;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.ServiceModel;
 
 namespace Service
@@ -9,6 +10,9 @@ namespace Service
     {
         private static Dictionary<string, bool> activeSessions = new Dictionary<string, bool>();
         private static Dictionary<string, FileManager> sessionFiles = new Dictionary<string, FileManager>();
+
+        private static Dictionary<string, StreamWriter> sessionWriters = new Dictionary<string, StreamWriter>();
+        private static Dictionary<string, StreamWriter> rejectWriters = new Dictionary<string, StreamWriter>();
 
         public bool StartSession(string vehicleId)
         {
@@ -24,6 +28,42 @@ namespace Service
 
             try
             {
+                string dateFolder = DateTime.Now.ToString("yyyy-MM-dd");
+                string sessionDir = Path.Combine("Data", vehicleId, dateFolder);
+
+                if (!Directory.Exists(sessionDir))
+                {
+                    Directory.CreateDirectory(sessionDir);
+                }
+
+                string sessionFilePath = Path.Combine(sessionDir, "session.csv");
+                StreamWriter sessionWriter = new StreamWriter(sessionFilePath, true);
+
+                if(new FileInfo(sessionFilePath).Length == 0)
+                {
+                    sessionWriter.WriteLine("Timestamp,VehicleId,RowIndex,VoltageRMSMin,VoltageRMSAvg,VoltageRMSMax,CurrentRMSMin,CurrentRMSAvg,CurrentRMSMax,RealPowerMin,RealPowerAvg,RealPowerMax,ReactivePowerMin,ReactivePowerAvg,ReactivePowerMax,ApparentPowerMin,ApparentPowerAvg,ApparentPowerMax,FrequencyMin,FrequencyAvg,FrequencyMax");
+                }
+
+                string rejectsFilePath = Path.Combine(sessionDir, "rejects.csv");
+                StreamWriter rejectWriter = new StreamWriter(rejectsFilePath, true);
+
+                if(new FileInfo(rejectsFilePath).Length == 0)
+                {
+                    rejectWriter.WriteLine("Timestamp,VehicleId,RowIndex,RejectReason");
+                }
+
+                activeSessions[vehicleId] = true;
+                sessionWriters[vehicleId] = sessionWriter;
+                rejectWriters[vehicleId] = rejectWriter;
+
+                Console.WriteLine($"Session started for vehicle: {vehicleId}");
+                Console.WriteLine($"Created directory: {sessionDir}");
+                Console.WriteLine($"Session file: {sessionFilePath}");
+                Console.WriteLine($"Rejects file: {rejectsFilePath}");
+
+                return true;
+
+                /*
                 string sessionFilePath = $"session_{vehicleId}.txt";
                 FileManager fileManager = new FileManager(sessionFilePath);
 
@@ -33,6 +73,7 @@ namespace Service
                 Console.WriteLine($"Session started for vehicle: {vehicleId}");
                 Console.WriteLine($"Created file resource: {sessionFilePath}");
                 return true;
+                */
             }
             catch (Exception ex)
             {
@@ -52,31 +93,26 @@ namespace Service
                 throw new FaultException<ChargingException>(new ChargingException("No active session for this vehicle"));
             }
 
-            if(data.TimeStamp == default(DateTime) || data.TimeStamp > DateTime.Now.AddMinutes(5))
+            try
             {
-                throw new FaultException<ChargingException>(new ChargingException("Date must be a valid date not in future."));
+                ValidateData(data);
+
+                SaveValidData(data);
+
+                Console.WriteLine($"Valid sample saved for vehicle: {data.VehicleId}, Row: {data.RowIndex}");
+
+                return true;
+            }
+            catch(FaultException<ChargingException> validationEx)
+            {
+                SaveRejectedData(data, validationEx.Detail.Message);
+
+                Console.WriteLine($"Sample rejected for vehicle: {data.VehicleId}, Row: {data.RowIndex} - reason: {validationEx.Detail.Message}");
+
+                throw;
             }
 
-            if(data.VoltageRMSMin <= 0 || data.VoltageRMSAvg <= 0 || data.VoltageRMSMax <= 0)
-            {
-                throw new FaultException<ChargingException>(new ChargingException("Voltage values must be greater than 0."));
-            }
-
-            if(data.FrequencyMin <= 0 || data.FrequencyAvg <= 0 || data.FrequencyMax <= 0)
-            {
-                throw new FaultException<ChargingException>(new ChargingException("Frequency values must be greater than 0."));
-            }
-
-            if(data.VoltageRMSMin > data.VoltageRMSAvg || data.VoltageRMSAvg > data.VoltageRMSMax)
-            {
-                throw new FaultException<ChargingException>(new ChargingException("Min voltage must be <= Avg <= Max."));
-            }
-
-            if(data.FrequencyMin > data.FrequencyAvg || data.FrequencyAvg > data.FrequencyMax)
-            {
-                throw new FaultException<ChargingException>(new ChargingException("Min frequency must be <= Avg <= Max."));
-            }
-
+            /*
             if(data.RowIndex % 5 == 0)
             {
                 Console.WriteLine("Simulating disposing resources");
@@ -90,6 +126,57 @@ namespace Service
 
             Console.WriteLine($"Received valid sample for vehicle {data.VehicleId}, Row: {data.RowIndex}");
             return true;
+            */
+        }
+
+        private void ValidateData(ChargingData data)
+        {
+            if (data.TimeStamp == default(DateTime) || data.TimeStamp > DateTime.Now.AddMinutes(5))
+            {
+                throw new FaultException<ChargingException>(new ChargingException("Date must be a valid date not in future."));
+            }
+
+            if (data.VoltageRMSMin <= 0 || data.VoltageRMSAvg <= 0 || data.VoltageRMSMax <= 0)
+            {
+                throw new FaultException<ChargingException>(new ChargingException("Voltage values must be greater than 0."));
+            }
+
+            if (data.FrequencyMin <= 0 || data.FrequencyAvg <= 0 || data.FrequencyMax <= 0)
+            {
+                throw new FaultException<ChargingException>(new ChargingException("Frequency values must be greater than 0."));
+            }
+
+            if (data.VoltageRMSMin > data.VoltageRMSAvg || data.VoltageRMSAvg > data.VoltageRMSMax)
+            {
+                throw new FaultException<ChargingException>(new ChargingException("Min voltage must be <= Avg <= Max."));
+            }
+
+            if (data.FrequencyMin > data.FrequencyAvg || data.FrequencyAvg > data.FrequencyMax)
+            {
+                throw new FaultException<ChargingException>(new ChargingException("Min frequency must be <= Avg <= Max."));
+            }
+        }
+
+        private void SaveValidData(ChargingData data)
+        {
+            if (sessionWriters.ContainsKey(data.VehicleId))
+            {
+                StreamWriter writer = sessionWriters[data.VehicleId];
+                string line = $"{data.TimeStamp:yyyy-MM-dd HH:mm:ss},{data.VehicleId},{data.RowIndex},{data.VoltageRMSMin},{data.VoltageRMSAvg},{data.VoltageRMSMax},{data.CurrentRMSMin},{data.CurrentRMSAvg},{data.CurrentRMSMax},{data.RealPowerMin},{data.RealPowerAvg},{data.RealPowerMax},{data.ReactivePowerMin},{data.ReactivePowerAvg},{data.ReactivePowerMax},{data.ApparentPowerMin},{data.ApparentPowerAvg},{data.ApparentPowerMax},{data.FrequencyMin},{data.FrequencyAvg},{data.FrequencyMax}";
+                writer.WriteLine(line);
+                writer.Flush();
+            }
+        }
+
+        private void SaveRejectedData(ChargingData data, string reason)
+        {
+            if (rejectWriters.ContainsKey(data.VehicleId))
+            {
+                StreamWriter writer = sessionWriters[data.VehicleId];
+                string line = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss}, {data.VehicleId}. {reason}";
+                writer.WriteLine(line);
+                writer.Flush();
+            }
         }
 
         public bool EndSession(string vehicleId)
@@ -99,6 +186,33 @@ namespace Service
                 throw new FaultException<ChargingException>(new ChargingException("No active session for this vehicle"));
             }
 
+            try
+            {
+                if (sessionWriters.ContainsKey(vehicleId))
+                {
+                    sessionWriters[vehicleId].Close();
+                    sessionWriters[vehicleId].Dispose();
+                    sessionWriters.Remove(vehicleId);
+                }
+
+                if (rejectWriters.ContainsKey(vehicleId))
+                {
+                    rejectWriters[vehicleId].Close();
+                    rejectWriters[vehicleId].Dispose();
+                    rejectWriters.Remove(vehicleId);
+                }
+
+                activeSessions.Remove(vehicleId);
+                Console.WriteLine($"Session ended and files closed for vehicle: {vehicleId}");
+
+                return true;
+            }
+            catch(Exception ex)
+            {
+                throw new FaultException<ChargingException>(new ChargingException($"Error ending session: {ex.Message}"));
+            }
+
+            /*
             if (sessionFiles.ContainsKey(vehicleId))
             {
                 sessionFiles[vehicleId].Dispose();
@@ -109,6 +223,7 @@ namespace Service
             activeSessions.Remove(vehicleId);
             Console.WriteLine($"Session ended for vehicle: {vehicleId}");
             return true;
+            */
         }
 
     }

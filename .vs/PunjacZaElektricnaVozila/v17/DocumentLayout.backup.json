@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1AAE1F27-001F-43D9-A493-31840708C222}|Client\\Client.csproj|c:\\users\\rbork\\desktop\\virtuelizacija\\punjaczaelektricnavozila\\client\\csvparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1AAE1F27-001F-43D9-A493-31840708C222}|Client\\Client.csproj|solutionrelative:client\\csvparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0D626ECE-AC2B-4579-BEC5-01467C176F42}|Service\\Service.csproj|c:\\users\\rbork\\desktop\\virtuelizacija\\punjaczaelektricnavozila\\service\\chargingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D626ECE-AC2B-4579-BEC5-01467C176F42}|Service\\Service.csproj|solutionrelative:service\\chargingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,14 +31,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CSVParser.cs",
-              "DocumentMoniker": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Client\\CSVParser.cs",
-              "RelativeDocumentMoniker": "Client\\CSVParser.cs",
-              "ToolTip": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Client\\CSVParser.cs",
-              "RelativeToolTip": "Client\\CSVParser.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAcwGMAAAAAAAAAAAAAAA==",
+              "Title": "ChargingService.cs",
+              "DocumentMoniker": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Service\\ChargingService.cs",
+              "RelativeDocumentMoniker": "Service\\ChargingService.cs",
+              "ToolTip": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Service\\ChargingService.cs",
+              "RelativeToolTip": "Service\\ChargingService.cs",
+              "ViewState": "AgIAAMMAAAAAAAAAAAA4wNcAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T04:10:15.667Z",
+              "WhenOpened": "2025-10-02T04:50:43.119Z",
               "EditorCaption": ""
             }
           ]
