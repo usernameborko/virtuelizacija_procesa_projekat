@@ -29,8 +29,11 @@ namespace Service
         public static event ChargigngEventHandler OnVoltageSpike;
         public static event ChargigngEventHandler OnCurrentSpike;
 
+        public static event ChargigngEventHandler OnPowerFactiorWarning;
+
         private const double VOLTAGE_LIMIT = 10.0;
         private const double CURRENT_LIMIT = 5.0;
+        private const double POWER_FACTOR_LIMIT = 0.85;
 
         private void RaiseTransferStarted(string vehicleId, string message)
         {
@@ -77,6 +80,14 @@ namespace Service
             }
         }
 
+        private void RaisePowerFactorWarning(string vehicleId, string message, int rowIndex)
+        {
+            if(OnPowerFactiorWarning != null)
+            {
+                OnPowerFactiorWarning(this, new ChargingEventArgs( vehicleId, message, rowIndex));
+            }
+        }
+
         private void AnalyzeVoltageAndCurrent(ChargingData currentData)
         {
             if (lastSamples.ContainsKey(currentData.VehicleId))
@@ -97,11 +108,33 @@ namespace Service
                 {
                     string message = $"Current spike detected: daltaI = {deltaI:F2}A (limit: {VOLTAGE_LIMIT}A)";
                     Console.WriteLine(message);
-                    RaiseVoltageSpike(currentData.VehicleId, message, currentData.RowIndex);
+                    RaiseCurrentSpike(currentData.VehicleId, message, currentData.RowIndex);
                 }
             }
 
+            AnalyzePowerFactor(currentData);
+
             lastSamples[currentData.VehicleId] = currentData;
+        }
+
+        private void AnalyzePowerFactor(ChargingData data)
+        {
+            if(data.ApparentPowerAvg <= 0)
+            {
+                Console.WriteLine($"Cannot calculate power factor - ApparentPowerAvg is {data.ApparentPowerAvg}");
+                return;
+            }
+
+            double powerFactor = data.ReactivePowerAvg/ data.ApparentPowerAvg;
+
+            Console.WriteLine($"Vehicle: {data.VehicleId}, Row: {data.RowIndex}, Power Factor: {powerFactor:F3}");
+
+            if(powerFactor < POWER_FACTOR_LIMIT)
+            {
+                string message = $"Power factor warning: PF = {powerFactor:F3} (limit: {POWER_FACTOR_LIMIT:F3})";
+                Console.WriteLine(message);
+                RaisePowerFactorWarning(data.VehicleId, message, data.RowIndex);
+            }
         }
 
 

@@ -17,12 +17,14 @@ namespace Service
             ChargingService.OnVoltageSpike += logger.OnVoltageSpike;
             ChargingService.OnCurrentSpike += logger.OnCurrentSpike;
 
+            ChargingService.OnPowerFactiorWarning += logger.OnPowerFactorWarning;
+
             ServiceHost host = new ServiceHost(typeof(ChargingService));
             host.Open();
 
             Console.WriteLine("Charging service is running...");
             Console.WriteLine("Event logging is active.");
-            Console.WriteLine("Voltage and current spike analytics is active.");
+            Console.WriteLine("Voltage and current spike and power factor analytics is active.");
             Console.WriteLine("Press any key to stop the service.");
             Console.ReadKey();
 

@@ -32,5 +32,10 @@ namespace Service
         {
             Console.WriteLine($"[CURRENT SPIKE] {e.Message} at {e.Timestamp}");
         }
+
+        public void OnPowerFactorWarning(object sender, ChargingEventArgs e)
+        {
+            Console.WriteLine($"[POWER FACTOR WARNING] {e.Message} at {e.Timestamp}");
+        }
     }
 }
