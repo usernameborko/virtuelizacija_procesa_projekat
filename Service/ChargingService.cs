@@ -44,7 +44,7 @@ namespace Service
                 OnTransferCompleted(this, new ChargingEventArgs(vehicleId, message));
             }
         }
-        private void RaiseWaningRaised(string vehicleId, string message)
+        private void RaiseWaningRaised(string vehicleId, string message, int rowIndex = 0)
         {
             if(OnWarningRaised != null)
             {
@@ -101,6 +101,8 @@ namespace Service
                 Console.WriteLine($"Status: READY FOR DATA TRANSFER");
                 Console.WriteLine("========================");
 
+                RaiseTransferStarted(vehicleId, $"Session started for vehicle {vehicleId}");
+
                 return true;
 
                 /*
@@ -145,6 +147,8 @@ namespace Service
 
                 Console.WriteLine($"SAMPLE ACCEPTED AND SAVED - Total: {sessionCounters[data.VehicleId]}");
 
+                RaiseSampleReceived(data.VehicleId, $"Sample {data.RowIndex} processed successfully", data.RowIndex);
+
                 return true;
             }
             catch(FaultException<ChargingException> validationEx)
@@ -152,6 +156,8 @@ namespace Service
                 SaveRejectedData(data, validationEx.Detail.Message);
 
                 Console.WriteLine($"SAMPLE REJECTED- Reason: {validationEx.Detail.Message}");
+
+                RaiseWaningRaised(data.VehicleId, $"Sample {data.RowIndex} rejected: {validationEx.Detail.Message}", data.RowIndex);
 
                 throw;
             }
@@ -256,6 +262,8 @@ namespace Service
                 Console.WriteLine($"Total records processed: {total}");
                 Console.WriteLine($"Status: SESSION CLOSED");
                 Console.WriteLine("========================");
+
+                RaiseTransferCompleted(vehicleId, $"Transfer completed for vehicle {vehicleId}. Total record: {total}");
 
                 return true;
             }

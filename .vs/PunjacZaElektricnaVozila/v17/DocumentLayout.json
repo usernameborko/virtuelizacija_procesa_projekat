@@ -5,10 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0D626ECE-AC2B-4579-BEC5-01467C176F42}|Service\\Service.csproj|c:\\users\\rbork\\desktop\\virtuelizacija\\punjaczaelektricnavozila\\service\\chargingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0D626ECE-AC2B-4579-BEC5-01467C176F42}|Service\\Service.csproj|solutionrelative:service\\chargingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8896E5F1-9636-4BFD-B6FA-ED91E52DD8C1}|Common\\Common.csproj|c:\\users\\rbork\\desktop\\virtuelizacija\\punjaczaelektricnavozila\\common\\chargingeventargs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8896E5F1-9636-4BFD-B6FA-ED91E52DD8C1}|Common\\Common.csproj|solutionrelative:common\\chargingeventargs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -40,22 +36,9 @@
               "RelativeDocumentMoniker": "Service\\ChargingService.cs",
               "ToolTip": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Service\\ChargingService.cs",
               "RelativeToolTip": "Service\\ChargingService.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAA8wCYAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAPIAAAAAAAAAAAAAAAYBAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-02T06:34:43.003Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ChargingEventArgs.cs",
-              "DocumentMoniker": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Common\\ChargingEventArgs.cs",
-              "RelativeDocumentMoniker": "Common\\ChargingEventArgs.cs",
-              "ToolTip": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Common\\ChargingEventArgs.cs",
-              "RelativeToolTip": "Common\\ChargingEventArgs.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAqwB8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T06:30:58.597Z",
               "EditorCaption": ""
             }
           ]
