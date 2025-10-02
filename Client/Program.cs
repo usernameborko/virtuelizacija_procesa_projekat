@@ -110,6 +110,8 @@ namespace Client
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
+            Console.WriteLine("Press ENTER to close...");
+            Console.ReadLine();
         }
 
         private static string ShowVehicleMenu()
@@ -120,7 +122,7 @@ namespace Client
                 Console.WriteLine($"{i + 1} - {vehicleTypes[i]}");
             }
             Console.WriteLine("0 - EXIT");
-            Console.Write("Choose vehicle (1 - 12)");
+            Console.Write("Choose vehicle (1 - 12): ");
 
             string input = Console.ReadLine();
             if(int.TryParse(input, out int choice))
@@ -162,7 +164,7 @@ namespace Client
                         proxy.PushSample(data);
                         successCount++;
 
-                        System.Threading.Thread.Sleep(100);
+                        System.Threading.Thread.Sleep(500);
                     }
                     catch(FaultException<ChargingException> ex)
                     {
@@ -189,6 +191,17 @@ namespace Client
             catch (Exception ex)
             {
                 Console.WriteLine($"Unexplected error: {ex.Message}");
+            }
+            finally
+            {
+                try
+                {
+                    factory.Close();
+                }
+                catch
+                {
+                    factory.Abort();
+                }
             }
         }
     }

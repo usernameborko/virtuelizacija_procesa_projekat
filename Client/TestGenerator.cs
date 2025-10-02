@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -49,6 +50,7 @@ namespace Client
                 writer.WriteLine("Timestamp,VoltageRMSMin,VoltageRMSAvg,VoltageRMSMax,CurrentRMSMin,CurrentRMSAvg,CurrentRMSMax,RealPowerMin,RealPowerAvg,RealPowerMax,ReactivePowerMin,ReactivePowerAvg,ReactivePowerMax,ApparentPowerMin,ApparentPowerAvg,ApparentPowerMax,FrequencyMin,FrequencyAvg,FrequencyMax");
 
                 DateTime baseTime = new DateTime(2024, 1, 1, 10, 0, 0);
+                CultureInfo culture = CultureInfo.InvariantCulture;
 
                 for(int i=0; i<10; i++)
                 {
@@ -58,15 +60,28 @@ namespace Client
                     double currentBase = 10 + rand.Next(0, 15);
                     double freqBase = 49.8 + (rand.NextDouble() * 0.4);
 
-                    string line = string.Format("{0:yyyy-MM-dd HH:mm:ss},{1:F1},{2:F1},{3:F1},{4:F1},{5:F1},{6:F1},{7:F0},{8:F0},{9:F0},{10:F0},{11:F0},{12:F0},{13:F0},{14:F0},{15:F0},{16:F2},{17:F2},{18:F2}",
-                        timestamp,
-                        voltageBase, voltageBase + 10, voltageBase + 20,
-                        currentBase, currentBase + 5, currentBase + 10,
-                        voltageBase * currentBase, (voltageBase + 10) * (currentBase + 5), (voltageBase + 20) * (currentBase + 10),
-                        100 + i * 10, 200 + i * 10, 300 + i * 10,
-                        (voltageBase * currentBase) + 50, ((voltageBase + 10) * (currentBase + 5)) + 50, ((voltageBase + 20) * (currentBase + 10)) + 50,
-                        freqBase, freqBase + 0.1, freqBase + 0.2);
-                    writer.WriteLine(line);
+                    writer.WriteLine(string.Format(culture,
+                        "{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18}",
+                        timestamp.ToString("yyyy-MM-dd HH:mm:ss"),
+                        voltageBase.ToString("F1", culture),
+                        (voltageBase + 10).ToString("F1", culture),
+                        (voltageBase + 20).ToString("F1", culture),
+                        currentBase.ToString("F1", culture),
+                        (currentBase + 5).ToString("F1", culture),
+                        (currentBase + 10).ToString("F1", culture),
+                        (voltageBase * currentBase).ToString("F0", culture),
+                        ((voltageBase + 10) * (currentBase + 5)).ToString("F0", culture),
+                        ((voltageBase + 20) * (currentBase + 10)).ToString("F0", culture),
+                        (100 + i * 10).ToString("F0", culture),
+                        (200 + i * 10).ToString("F0", culture),
+                        (300 + i * 10).ToString("F0", culture),
+                        ((voltageBase * currentBase) + 50).ToString("F0", culture),
+                        (((voltageBase + 10) * (currentBase + 5)) + 50).ToString("F0", culture),
+                        (((voltageBase + 20) * (currentBase + 10)) + 50).ToString("F0", culture),
+                        freqBase.ToString("F2", culture),
+                        (freqBase + 0.1).ToString("F2", culture),
+                        (freqBase + 0.2).ToString("F2", culture)
+                    ));
                 }
             }
         }

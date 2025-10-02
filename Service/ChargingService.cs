@@ -180,7 +180,7 @@ namespace Service
         {
             if (rejectWriters.ContainsKey(data.VehicleId))
             {
-                StreamWriter writer = sessionWriters[data.VehicleId];
+                StreamWriter writer = rejectWriters[data.VehicleId];
                 string line = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss}, {data.VehicleId}. {reason}";
                 writer.WriteLine(line);
                 writer.Flush();

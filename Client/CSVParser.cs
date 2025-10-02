@@ -63,7 +63,8 @@ namespace Client
         {
             string[] fields = line.Split(',');
 
-            if(fields.Length != 19)
+
+            if (fields.Length != 19)
             {
                 throw new FormatException($"Expected 19 fields, got {fields.Length}");
             }
@@ -74,7 +75,7 @@ namespace Client
             {
                 VehicleId = vehicleId,
                 RowIndex = rowIndex,
-                TimeStamp = DateTime.ParseExact(fields[0], "yyyy-MM-dd HH:ss", culture),
+                TimeStamp = DateTime.ParseExact(fields[0], "yyyy-MM-dd HH:mm:ss", culture),
                 VoltageRMSMin = double.Parse(fields[1], culture),
                 VoltageRMSAvg = double.Parse(fields[2], culture),
                 VoltageRMSMax = double.Parse(fields[3], culture),

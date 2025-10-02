@@ -1,0 +1,21 @@
+Timestamp,VehicleId,RowIndex,VoltageRMSMin,VoltageRMSAvg,VoltageRMSMax,CurrentRMSMin,CurrentRMSAvg,CurrentRMSMax,RealPowerMin,RealPowerAvg,RealPowerMax,ReactivePowerMin,ReactivePowerAvg,ReactivePowerMax,ApparentPowerMin,ApparentPowerAvg,ApparentPowerMax,FrequencyMin,FrequencyAvg,FrequencyMax
+2025-10-02 08:06:17, Porsche_Taycan. Voltage values must be greater than 0.
+2025-10-02 08:06:37, Porsche_Taycan. Voltage values must be greater than 0.
+2025-10-02 08:06:39, Porsche_Taycan. Voltage values must be greater than 0.
+2025-10-02 08:06:40, Porsche_Taycan. Voltage values must be greater than 0.
+2025-10-02 08:06:41, Porsche_Taycan. Voltage values must be greater than 0.
+2025-10-02 08:06:41, Porsche_Taycan. Voltage values must be greater than 0.
+2025-10-02 08:06:42, Porsche_Taycan. Voltage values must be greater than 0.
+2025-10-02 08:06:43, Porsche_Taycan. Voltage values must be greater than 0.
+2025-10-02 08:06:43, Porsche_Taycan. Voltage values must be greater than 0.
+2025-10-02 08:06:44, Porsche_Taycan. Voltage values must be greater than 0.
+2024-01-01 10:00:00,Porsche_Taycan,1,231,241,251,23,28,33,5313,6748,8283,100,200,300,5363,6798,8333,49,89,49,99,50,09
+2024-01-01 10:00:01,Porsche_Taycan,2,220,230,240,14,19,24,3080,4370,5760,110,210,310,3130,4420,5810,50,03,50,13,50,23
+2024-01-01 10:00:02,Porsche_Taycan,3,229,239,249,16,21,26,3664,5019,6474,120,220,320,3714,5069,6524,49,83,49,93,50,03
+2024-01-01 10:00:03,Porsche_Taycan,4,237,247,257,19,24,29,4503,5928,7453,130,230,330,4553,5978,7503,50,14,50,24,50,34
+2024-01-01 10:00:04,Porsche_Taycan,5,226,236,246,12,17,22,2712,4012,5412,140,240,340,2762,4062,5462,49,85,49,95,50,05
+2024-01-01 10:00:05,Porsche_Taycan,6,235,245,255,19,24,29,4465,5880,7395,150,250,350,4515,5930,7445,49,9,50,50,1
+2024-01-01 10:00:06,Porsche_Taycan,7,234,244,254,11,16,21,2574,3904,5334,160,260,360,2624,3954,5384,50,50,1,50,2
+2024-01-01 10:00:07,Porsche_Taycan,8,236,246,256,13,18,23,3068,4428,5888,170,270,370,3118,4478,5938,50,14,50,24,50,34
+2024-01-01 10:00:08,Porsche_Taycan,9,231,241,251,15,20,25,3465,4820,6275,180,280,380,3515,4870,6325,50,08,50,18,50,28
+2024-01-01 10:00:09,Porsche_Taycan,10,220,230,240,20,25,30,4400,5750,7200,190,290,390,4450,5800,7250,50,05,50,15,50,25
