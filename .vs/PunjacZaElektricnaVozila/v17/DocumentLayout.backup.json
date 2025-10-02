@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0D626ECE-AC2B-4579-BEC5-01467C176F42}|Service\\Service.csproj|c:\\users\\rbork\\desktop\\virtuelizacija\\punjaczaelektricnavozila\\service\\chargingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0D626ECE-AC2B-4579-BEC5-01467C176F42}|Service\\Service.csproj|solutionrelative:service\\chargingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0D626ECE-AC2B-4579-BEC5-01467C176F42}|Service\\Service.csproj|c:\\users\\rbork\\desktop\\virtuelizacija\\punjaczaelektricnavozila\\service\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D626ECE-AC2B-4579-BEC5-01467C176F42}|Service\\Service.csproj|solutionrelative:service\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8896E5F1-9636-4BFD-B6FA-ED91E52DD8C1}|Common\\Common.csproj|c:\\users\\rbork\\desktop\\virtuelizacija\\punjaczaelektricnavozila\\common\\chargingeventargs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8896E5F1-9636-4BFD-B6FA-ED91E52DD8C1}|Common\\Common.csproj|solutionrelative:common\\chargingeventargs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0D626ECE-AC2B-4579-BEC5-01467C176F42}|Service\\Service.csproj|c:\\users\\rbork\\desktop\\virtuelizacija\\punjaczaelektricnavozila\\service\\eventlogger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D626ECE-AC2B-4579-BEC5-01467C176F42}|Service\\Service.csproj|solutionrelative:service\\eventlogger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D626ECE-AC2B-4579-BEC5-01467C176F42}|Service\\Service.csproj|c:\\users\\rbork\\desktop\\virtuelizacija\\punjaczaelektricnavozila\\service\\chargingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D626ECE-AC2B-4579-BEC5-01467C176F42}|Service\\Service.csproj|solutionrelative:service\\chargingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,27 +39,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ChargingService.cs",
-              "DocumentMoniker": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Service\\ChargingService.cs",
-              "RelativeDocumentMoniker": "Service\\ChargingService.cs",
-              "ToolTip": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Service\\ChargingService.cs",
-              "RelativeToolTip": "Service\\ChargingService.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAA8wCYAAAAJAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Service\\Program.cs",
+              "RelativeDocumentMoniker": "Service\\Program.cs",
+              "ToolTip": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Service\\Program.cs",
+              "RelativeToolTip": "Service\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T06:34:43.003Z",
+              "WhenOpened": "2025-10-02T07:03:19.442Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ChargingEventArgs.cs",
-              "DocumentMoniker": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Common\\ChargingEventArgs.cs",
-              "RelativeDocumentMoniker": "Common\\ChargingEventArgs.cs",
-              "ToolTip": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Common\\ChargingEventArgs.cs",
-              "RelativeToolTip": "Common\\ChargingEventArgs.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAqwB8AAAAAAAAAAAAAAA==",
+              "Title": "EventLogger.cs",
+              "DocumentMoniker": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Service\\EventLogger.cs",
+              "RelativeDocumentMoniker": "Service\\EventLogger.cs",
+              "ToolTip": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Service\\EventLogger.cs",
+              "RelativeToolTip": "Service\\EventLogger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T06:30:58.597Z",
+              "WhenOpened": "2025-10-02T06:59:57.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ChargingService.cs",
+              "DocumentMoniker": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Service\\ChargingService.cs",
+              "RelativeDocumentMoniker": "Service\\ChargingService.cs",
+              "ToolTip": "C:\\Users\\rbork\\Desktop\\virtuelizacija\\PunjacZaElektricnaVozila\\Service\\ChargingService.cs",
+              "RelativeToolTip": "Service\\ChargingService.cs",
+              "ViewState": "AgIAAPIAAAAAAAAAAAAAAAYBAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T06:34:43.003Z",
               "EditorCaption": ""
             }
           ]
