@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.ServiceModel;
+using System.Xml.Serialization;
 
 namespace Service
 {
@@ -16,12 +17,20 @@ namespace Service
 
         private static Dictionary<string, int> sessionCounters = new Dictionary<string, int>();
 
+        public static Dictionary<string, ChargingData> lastSamples = new Dictionary<string, ChargingData>();
+
         public delegate void ChargigngEventHandler(object sender, ChargingEventArgs e);
 
         public static event ChargigngEventHandler OnTransferStarted;
         public static event ChargigngEventHandler OnSampleReceived;
         public static event ChargigngEventHandler OnTransferCompleted;
         public static event ChargigngEventHandler OnWarningRaised;
+
+        public static event ChargigngEventHandler OnVoltageSpike;
+        public static event ChargigngEventHandler OnCurrentSpike;
+
+        private const double VOLTAGE_LIMIT = 10.0;
+        private const double CURRENT_LIMIT = 5.0;
 
         private void RaiseTransferStarted(string vehicleId, string message)
         {
@@ -48,9 +57,53 @@ namespace Service
         {
             if(OnWarningRaised != null)
             {
-                OnWarningRaised(this, new ChargingEventArgs(vehicleId, message));
+                OnWarningRaised(this, new ChargingEventArgs(vehicleId, message, rowIndex));
             }
         }
+
+        private void RaiseVoltageSpike(string vehicleId, string message, int rowIndex = 0)
+        {
+            if(OnVoltageSpike != null)
+            {
+                OnVoltageSpike(this, new ChargingEventArgs(vehicleId, message, rowIndex));
+            }
+        }
+
+        private void RaiseCurrentSpike(string vehicleId, string message, int rowIndex = 0)
+        {
+            if(OnCurrentSpike != null)
+            {
+                OnCurrentSpike(this, new ChargingEventArgs(vehicleId, message, rowIndex));
+            }
+        }
+
+        private void AnalyzeVoltageAndCurrent(ChargingData currentData)
+        {
+            if (lastSamples.ContainsKey(currentData.VehicleId))
+            {
+                ChargingData lastData = lastSamples[currentData.VehicleId];
+
+                double deltaV = Math.Abs(currentData.VoltageRMSAvg - lastData.VoltageRMSAvg);
+                double deltaI = Math.Abs(currentData.CurrentRMSAvg - lastData.CurrentRMSAvg);
+
+                if(deltaV > VOLTAGE_LIMIT)
+                {
+                    string message = $"Voltage spike detected: daltaV = {deltaV:F2}V (limit: {VOLTAGE_LIMIT}V)";
+                    Console.WriteLine(message);
+                    RaiseVoltageSpike(currentData.VehicleId, message, currentData.RowIndex);
+                }
+
+                if (deltaI > CURRENT_LIMIT)
+                {
+                    string message = $"Current spike detected: daltaI = {deltaI:F2}A (limit: {VOLTAGE_LIMIT}A)";
+                    Console.WriteLine(message);
+                    RaiseVoltageSpike(currentData.VehicleId, message, currentData.RowIndex);
+                }
+            }
+
+            lastSamples[currentData.VehicleId] = currentData;
+        }
+
 
         public bool StartSession(string vehicleId)
         {
@@ -142,6 +195,8 @@ namespace Service
                 ValidateData(data);
 
                 SaveValidData(data);
+
+                AnalyzeVoltageAndCurrent(data);
 
                 sessionCounters[data.VehicleId]++;
 
@@ -256,6 +311,11 @@ namespace Service
 
                 activeSessions.Remove(vehicleId);
                 sessionCounters.Remove(vehicleId);
+
+                if (lastSamples.ContainsKey(vehicleId))
+                {
+                    lastSamples.Remove(vehicleId);
+                }
 
                 Console.WriteLine("=== TRANSFER COMPLETE ===");
                 Console.WriteLine($"Vehicle: {vehicleId}");

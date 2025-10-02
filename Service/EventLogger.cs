@@ -23,5 +23,14 @@ namespace Service
         {
             Console.WriteLine($"[WARNING] {e.Message} at {e.Timestamp}");
         }
+
+        public void OnVoltageSpike(object sender, ChargingEventArgs e)
+        {
+            Console.WriteLine($"[VOLTAGE SPIKE] {e.Message} at {e.Timestamp}");
+        }
+        public void OnCurrentSpike(object sender, ChargingEventArgs e)
+        {
+            Console.WriteLine($"[CURRENT SPIKE] {e.Message} at {e.Timestamp}");
+        }
     }
 }
