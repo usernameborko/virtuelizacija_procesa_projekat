@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -55,6 +56,20 @@
       <Project>{8896e5f1-9636-4bfd-b6fa-ed91e52dd8c1}</Project>
       <Name>Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="VehicleData\Audi_A3\" />
+    <Folder Include="VehicleData\BMW_i3\" />
+    <Folder Include="VehicleData\Hyundai_Kona\" />
+    <Folder Include="VehicleData\Jaguar_Pace\" />
+    <Folder Include="VehicleData\Kia_e-Niro\" />
+    <Folder Include="VehicleData\Mercedes_GCS\" />
+    <Folder Include="VehicleData\Nissan_Leaf\" />
+    <Folder Include="VehicleData\Peugeot_e-208\" />
+    <Folder Include="VehicleData\Porsche_Taycan\" />
+    <Folder Include="VehicleData\Tesla_Model_S\" />
+    <Folder Include="VehicleData\Volkswagen_MK2\" />
+    <Folder Include="VehicleData\Volvo_XC40\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

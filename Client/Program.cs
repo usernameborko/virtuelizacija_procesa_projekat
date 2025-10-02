@@ -8,6 +8,10 @@ namespace Client
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Generating test data...");
+            TestGenerator.GenerateTestData();
+            Console.WriteLine("Test data generated!\n");
+
             ChannelFactory<IChargingService> factory = new ChannelFactory<IChargingService>("ChargingService");
             IChargingService proxy = factory.CreateChannel();
 
