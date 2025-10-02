@@ -14,6 +14,8 @@ namespace Service
         private static Dictionary<string, StreamWriter> sessionWriters = new Dictionary<string, StreamWriter>();
         private static Dictionary<string, StreamWriter> rejectWriters = new Dictionary<string, StreamWriter>();
 
+        private static Dictionary<string, int> sessionCounters = new Dictionary<string, int>();
+
         public bool StartSession(string vehicleId)
         {
             if (string.IsNullOrEmpty(vehicleId))
@@ -55,11 +57,13 @@ namespace Service
                 activeSessions[vehicleId] = true;
                 sessionWriters[vehicleId] = sessionWriter;
                 rejectWriters[vehicleId] = rejectWriter;
+                sessionCounters[vehicleId] = 0;
 
-                Console.WriteLine($"Session started for vehicle: {vehicleId}");
-                Console.WriteLine($"Created directory: {sessionDir}");
-                Console.WriteLine($"Session file: {sessionFilePath}");
-                Console.WriteLine($"Rejects file: {rejectsFilePath}");
+                Console.WriteLine("=== SESSION STARTED ===");
+                Console.WriteLine($"Vehicle: {vehicleId}");
+                Console.WriteLine($"Directory: {sessionDir}");
+                Console.WriteLine($"Status: READY FOR DATA TRANSFER");
+                Console.WriteLine("========================");
 
                 return true;
 
@@ -93,13 +97,17 @@ namespace Service
                 throw new FaultException<ChargingException>(new ChargingException("No active session for this vehicle"));
             }
 
+            Console.WriteLine($"TRANSFER IN PROGRESS - Vehicle: {data.VehicleId}, Row: {data.RowIndex}");
+
             try
             {
                 ValidateData(data);
 
                 SaveValidData(data);
 
-                Console.WriteLine($"Valid sample saved for vehicle: {data.VehicleId}, Row: {data.RowIndex}");
+                sessionCounters[data.VehicleId]++;
+
+                Console.WriteLine($"SAMPLE ACCEPTED AND SAVED - Total: {sessionCounters[data.VehicleId]}");
 
                 return true;
             }
@@ -107,7 +115,7 @@ namespace Service
             {
                 SaveRejectedData(data, validationEx.Detail.Message);
 
-                Console.WriteLine($"Sample rejected for vehicle: {data.VehicleId}, Row: {data.RowIndex} - reason: {validationEx.Detail.Message}");
+                Console.WriteLine($"SAMPLE REJECTED- Reason: {validationEx.Detail.Message}");
 
                 throw;
             }
@@ -188,6 +196,8 @@ namespace Service
 
             try
             {
+                int total = sessionCounters.ContainsKey(vehicleId) ? sessionCounters[vehicleId] : 0;
+
                 if (sessionWriters.ContainsKey(vehicleId))
                 {
                     sessionWriters[vehicleId].Close();
@@ -203,7 +213,13 @@ namespace Service
                 }
 
                 activeSessions.Remove(vehicleId);
-                Console.WriteLine($"Session ended and files closed for vehicle: {vehicleId}");
+                sessionCounters.Remove(vehicleId);
+
+                Console.WriteLine("=== TRANSFER COMPLETE ===");
+                Console.WriteLine($"Vehicle: {vehicleId}");
+                Console.WriteLine($"Total records processed: {total}");
+                Console.WriteLine($"Status: SESSION CLOSED");
+                Console.WriteLine("========================");
 
                 return true;
             }
